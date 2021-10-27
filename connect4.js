@@ -78,7 +78,13 @@ class Game {
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(this.currPlayer);
+    // piece.classList.add(this.currPlayer);
+    if (this.currPlayer === this.players[0]) {
+      piece.classList.add('p1');
+    } else {
+      piece.classList.add('p2');
+    }
+
     piece.style.top = -50 * (y + 2);
 
     const spot = document.getElementById(`${y}-${x}`);
@@ -177,4 +183,4 @@ class Game {
   }
 }
 
-new Game('p1', 'p2');
+new Game('Red', 'Green');

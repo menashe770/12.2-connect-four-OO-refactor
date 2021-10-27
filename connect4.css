@@ -16,11 +16,11 @@
 }
 
 .piece.p1 {
-  background-color: red;
+  background-color: darkred;
 }
 
 .piece.p2 {
-  background-color: blue;
+  background-color: darkgreen;
 }
 
 /* column-top is table row of clickable areas for each column */

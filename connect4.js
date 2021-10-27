@@ -78,7 +78,7 @@ class Game {
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    piece.classList.add(this.currPlayer);
     piece.style.top = -50 * (y + 2);
 
     const spot = document.getElementById(`${y}-${x}`);
@@ -109,7 +109,7 @@ class Game {
 
     // check for win
     if (this.checkForWin()) {
-      return endGame(`Player ${this.currPlayer} won!`);
+      return this.endGame(`Player ${this.currPlayer} won!`);
     }
 
     // check for tie
@@ -130,7 +130,7 @@ class Game {
     //  - returns true if all are legal coordinates & all match currPlayer
 
     const _win = (cells) => {
-      return cells.every(
+      cells.every(
         ([y, x]) =>
           y >= 0 &&
           y < this.height &&

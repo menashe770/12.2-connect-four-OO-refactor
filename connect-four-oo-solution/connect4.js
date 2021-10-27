@@ -36,11 +36,11 @@ class Game {
     const top = document.createElement('tr');
     top.setAttribute('id', 'column-top');
 
-    // store a reference to the handleClick bound function 
+    // store a reference to the handleClick bound function
     // so that we can remove the event listener correctly later
     this.handleGameClick = this.handleClick.bind(this);
-    
-    top.addEventListener("click", this.handleGameClick);
+
+    top.addEventListener('click', this.handleGameClick);
 
     for (let x = 0; x < this.width; x++) {
       const headCell = document.createElement('td');
@@ -53,13 +53,13 @@ class Game {
     // make main part of board
     for (let y = 0; y < this.height; y++) {
       const row = document.createElement('tr');
-    
+
       for (let x = 0; x < this.width; x++) {
         const cell = document.createElement('td');
         cell.setAttribute('id', `${y}-${x}`);
         row.append(cell);
       }
-    
+
       board.append(row);
     }
   }
@@ -91,8 +91,8 @@ class Game {
 
   endGame(msg) {
     alert(msg);
-    const top = document.querySelector("#column-top");
-    top.removeEventListener("click", this.handleGameClick);
+    const top = document.querySelector('#column-top');
+    top.removeEventListener('click', this.handleGameClick);
   }
 
   /** handleClick: handle click of column top to play piece */
@@ -112,7 +112,7 @@ class Game {
     this.placeInTable(y, x);
 
     // check for tie
-    if (this.board.every(row => row.every(cell => cell))) {
+    if (this.board.every((row) => row.every((cell) => cell))) {
       return this.endGame('Tie!');
     }
 
@@ -133,7 +133,7 @@ class Game {
     // Check four cells to see if they're all color of current player
     //  - cells: list of four (y, x) cells
     //  - returns true if all are legal coordinates & all match currPlayer
-    const _win = cells =>
+    const _win = (cells) =>
       cells.every(
         ([y, x]) =>
           y >= 0 &&
@@ -147,10 +147,30 @@ class Game {
       for (let x = 0; x < this.width; x++) {
         // get "check list" of 4 cells (starting here) for each of the different
         // ways to win
-        const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-        const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-        const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-        const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+        const horiz = [
+          [y, x],
+          [y, x + 1],
+          [y, x + 2],
+          [y, x + 3]
+        ];
+        const vert = [
+          [y, x],
+          [y + 1, x],
+          [y + 2, x],
+          [y + 3, x]
+        ];
+        const diagDR = [
+          [y, x],
+          [y + 1, x + 1],
+          [y + 2, x + 2],
+          [y + 3, x + 3]
+        ];
+        const diagDL = [
+          [y, x],
+          [y + 1, x - 1],
+          [y + 2, x - 2],
+          [y + 3, x - 3]
+        ];
 
         // find winner (only checking each win-possibility as needed)
         if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {

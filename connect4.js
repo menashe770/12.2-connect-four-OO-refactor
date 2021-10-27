@@ -129,7 +129,7 @@ class Game {
     //  - cells: list of four (y, x) cells
     //  - returns true if all are legal coordinates & all match currPlayer
 
-    function _win(cells) {
+    const _win = (cells) => {
       return cells.every(
         ([y, x]) =>
           y >= 0 &&
@@ -138,7 +138,7 @@ class Game {
           x < this.width &&
           this.board[y][x] === this.currPlayer
       );
-    }
+    };
 
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
